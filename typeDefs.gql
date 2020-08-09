@@ -1,0 +1,32 @@
+scalar Date
+
+type Element {
+  _id: ID
+  product: String!
+  selector: String!
+  options: String!
+  icon: String!
+  label: String!
+  value: String!
+}
+
+type Config {
+  jsonConfig: String!
+}
+
+type Query {
+  getElements(product: String): [Element]
+}
+
+type Mutation {
+  addElement(
+    product: String!
+    selector: String!
+    options: String!
+    icon: String!
+    label: String!
+    value: String!
+  ): Element!
+
+  addConfig(jsonConfig: String!): Config!
+}

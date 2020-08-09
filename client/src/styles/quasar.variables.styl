@@ -1,0 +1,35 @@
+
+$card = #d5aca9
+$page = #dfdebe
+$section = #bdb6ac
+$drop = #83c9f4
+$txtNormal = #508CA4
+
+:root
+  --q-color-card $card
+  --q-color-page  $page
+  --q-color-section $section
+  --q-color-drop  $page
+  --q-color-txtNormal  $txtNorma
+
+.bg-card
+  background: $card !important
+  background: var(--q-color-card) !important 
+
+.bg-page 
+  background: $page  !important
+  background: var(--q-color-page ) !important
+
+.bg-section 
+  background: $section !important
+  background: var(--q-color-section ) !important
+
+.bg-drop  
+  background: $drop !important
+  background: var(--q-color-drop ) !important  
+
+.text-txtNormal
+  color: $txtNormal !important
+  color: var(--q-color-txtNormal) !important  
+
+@import '~quasar-variables-styl'
