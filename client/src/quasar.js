@@ -6,8 +6,11 @@ import { Quasar } from 'quasar'
 
 Vue.use(Quasar, {
   config: {},
-  components: { /* not needed if importStrategy is not 'manual' */ },
-  directives: { /* not needed if importStrategy is not 'manual' */ },
-  plugins: {
-  }
- })
+  components: {
+    /* not needed if importStrategy is not 'manual' */
+  },
+  directives: {
+    /* not needed if importStrategy is not 'manual' */
+  },
+  plugins: {}
+})

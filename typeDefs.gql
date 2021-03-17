@@ -19,14 +19,8 @@ type Query {
 }
 
 type Mutation {
-  addElement(
-    product: String!
-    selector: String!
-    options: String!
-    icon: String!
-    label: String!
-    value: String!
-  ): Element!
+  addElement(product: String!, selector: String!, options: String!, icon: String!, label: String!, value: String!): Element!
+  updateElement(elementId: ID!, product: String!, selector: String!, options: String!, icon: String!, label: String!, value: String!): Element!
 
   addConfig(jsonConfig: String!): Config!
 }

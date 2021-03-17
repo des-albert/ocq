@@ -1,51 +1,53 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-import { apolloClient } from '../main';
-import { GET_ELEMENTS, ADD_CONFIG } from '../queries';
+import { apolloClient } from '../main'
+import { GET_ELEMENTS, ADD_CONFIG, ADD_ELEMENT } from '../queries'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     element: {},
+    items: [],
     jsonConfig: null,
     loading: false
   },
   mutations: {
     setLoading: (state, payload) => {
-      state.loading = payload;
+      state.loading = payload
     },
     setConfig: (state, payload) => {
-      state.jsonConfig = payload;
+      state.jsonConfig = payload
     },
     setElement: (state, payload) => {
-      state.element = {};
+      state.element = {}
       payload.forEach(item => {
-        state.element[item.selector] = item;
-      });
+        state.element[item.selector] = item
+        state.items.push(item)
+      })
     }
   },
 
   actions: {
     getElements: ({ commit }, payload) => {
-      commit('setLoading', true);
+      commit('setLoading', true)
       apolloClient
         .query({
           query: GET_ELEMENTS,
           variables: payload
         })
         .then(({ data }) => {
-          commit('setElement', data.getElements);
-          commit('setLoading', false);
+          commit('setElement', data.getElements)
+          commit('setLoading', false)
         })
         .catch(err => {
-          commit('setLoading', false);
-          console.error(err);
-        });
+          commit('setLoading', false)
+          console.error(err)
+        })
     },
     addConfig: ({ commit }, payload) => {
-      commit('setLoading', true);
+      commit('setLoading', true)
 
       apolloClient
         .mutate({
@@ -53,17 +55,37 @@ export default new Vuex.Store({
           variables: payload
         })
         .then(({ data }) => {
-          commit('setLoading', false);
-          commit('setConfig', data.addConfig);
+          commit('setLoading', false)
+          commit('setConfig', data.addConfig)
         })
         .catch(err => {
-          commit('setLoading', false);
-          console.error(err);
-        });
+          commit('setLoading', false)
+          console.error(err)
+        })
+    },
+
+    addElement: ({ commit }, payload) => {
+      commit('setLoading', true)
+
+      apolloClient
+        .mutate({
+          mutation: ADD_ELEMENT,
+          variables: payload
+        })
+        .then(({ data }) => {
+          commit('setLoading', false)
+          commit('setConfig', data.addElement)
+        })
+        .catch(err => {
+          commit('setLoading', false)
+          console.error(err)
+        })
     }
   },
+
   getters: {
     element: state => state.element,
+    items: state => state.items,
     loading: state => state.loading
   }
-});
+})

@@ -1,6 +1,6 @@
 <template>
   <q-page class="bg-page row justify-center q-py-md">
-    <div class="col-6">
+    <div class="col-6" style="max-width: 300px">
       <q-card class="bg-card" align="center">
         <q-card-section class="text-txtNormal justify-center">ClusterStor E1000 Configurator
         </q-card-section>
@@ -197,9 +197,7 @@ export default {
         product: 'e1000'
       })
     },
-    handleAddFileSystem() {
-      console.log('select ' + JSON.stringify(this.config))
-    }
+    handleAddFileSystem() {}
   }
 }
 </script>

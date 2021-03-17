@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const ElementSchema = new mongoose.Schema({
   product: {
@@ -25,6 +25,8 @@ const ElementSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-});
-
-module.exports = mongoose.model('Element', ElementSchema);
+})
+ElementSchema.index({
+  '$**': 'text'
+})
+module.exports = mongoose.model('Element', ElementSchema)
